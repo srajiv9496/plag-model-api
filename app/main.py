@@ -1,3 +1,4 @@
+# app/main.py
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 import tempfile
@@ -7,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Update this for production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,5 +25,5 @@ async def check(pdf: UploadFile = File(...)):
 
     return {
         "plagiarism_percentage": plagiarism_percent,
-        "is_plagiarized": plagiarism_percent > 30  # Define your own threshold
+        "is_plagiarized": plagiarism_percent > 30
     }
